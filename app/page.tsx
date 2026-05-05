@@ -13,7 +13,7 @@ export default function Home() {
             src="/Grain_in_hand.jpeg"
             alt="Golden wheat field representing our core agricultural commodities"
             fill
-            className="object-cover brightness-[0.5] hover:scale-105 transition-transform duration-10000"
+            className="object-cover brightness-[0.5]"
             priority
             unoptimized
           />
