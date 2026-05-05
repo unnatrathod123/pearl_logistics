@@ -1,5 +1,6 @@
 import { ShieldCheck, Clock, Globe, Search, Target, Award } from 'lucide-react';
 import Image from 'next/image';
+import CTA from '@/components/CTA';
 
 export default function Home() {
   return (
@@ -12,15 +13,15 @@ export default function Home() {
             src="/Rice_&_Wheat_In_Hand.jpeg"
             alt="Golden wheat field representing our core agricultural commodities"
             fill
-            className="object-cover brightness-[0.45] hover:scale-105 transition-transform duration-10000"
+            className="object-cover brightness-[0.5] hover:scale-105 transition-transform duration-10000"
             priority
             unoptimized
           />
         </div>
 
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto flex flex-col items-center animate-fade-in-up">
-          <h1 className="text-5xl md:text-6xl lg:text-7xl leading-tight font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#9932CC] via-[#7F5AF0] to-[#CBC3E3] mb-6 tracking-tight drop-shadow-lg">
-            Delivering Your World, <span className="bg-clip-text bg-gradient-to-r from-[#7F5AF0] to-[#CBC3E3] drop-shadow-md">On Time.</span>
+          <h1 className="text-5xl md:text-6xl lg:text-7xl leading-tight font-extrabold text-transparent bg-clip-text bg-linear-to-r from-[#9932CC] via-[#7F5AF0] to-[#CBC3E3] mb-6 tracking-tight drop-shadow-lg">
+            Delivering Your World, <span className="bg-clip-text bg-linear-to-r from-[#7F5AF0] to-[#CBC3E3] drop-shadow-md">On Time.</span>
           </h1>
           <p className="text-lg md:text-xl text-gray-200 mb-10 max-w-2xl font-medium drop-shadow-md">
             Fast, reliable, and secure logistics solutions for modern businesses around the globe.
@@ -135,6 +136,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <CTA />
     </div>
   );
 }

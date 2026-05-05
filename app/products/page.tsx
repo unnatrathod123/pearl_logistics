@@ -4,6 +4,7 @@ import { Leaf, Wheat, Search, MapPin, Package, Filter, CheckCircle2 } from 'luci
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
+import CTA from '@/components/CTA';
 
 // Products catalog
 const products = [
@@ -219,6 +220,7 @@ export default function Products() {
 
         </div>
       </section>
+      <CTA />
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import { MapPin, Target, Award } from 'lucide-react';
 import Image from 'next/image';
+import CTA from '@/components/CTA';
 
 export default function About() {
   return (
@@ -75,6 +76,7 @@ export default function About() {
         </div>
       </section>
 
+      <CTA />
     </div>
   );
 }
