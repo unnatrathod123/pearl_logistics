@@ -10,7 +10,7 @@ export default function Home() {
         {/* Background image */}
         <div className="absolute inset-0 w-full h-full animate-fade-in">
           <Image
-            src="/Rice_&_Wheat_In_Hand.jpeg"
+            src="/RIce_&_Wheat_In_Hand.jpeg"
             alt="Golden wheat field representing our core agricultural commodities"
             fill
             className="object-cover brightness-[0.5] hover:scale-105 transition-transform duration-10000"
