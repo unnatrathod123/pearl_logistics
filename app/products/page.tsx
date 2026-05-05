@@ -60,7 +60,7 @@ export default function Products() {
   });
 
   return (
-    <div className="bg-[#f8f9fc] min-h-screen pb-24">
+    <div className="bg-[#f8f9fc] min-h-screen">
       {/* Header */}
       <section className="relative py-24 md:py-32 overflow-hidden flex items-center justify-center">
         <div className="absolute inset-0 w-full h-full">
@@ -82,7 +82,7 @@ export default function Products() {
       </section>
 
       {/* Catalog Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10 mb-24">
         <div className="flex flex-col lg:flex-row gap-8">
 
           {/* Sidebar */}
@@ -220,7 +220,10 @@ export default function Products() {
 
         </div>
       </section>
-      <CTA />
+      <CTA 
+        title="Source Premium Agricultural Commodities Today" 
+        description="Browse our extensive catalog of high-quality rice and wheat, sourced directly from verified global suppliers."
+      />
     </div>
   );
 }

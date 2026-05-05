@@ -76,7 +76,10 @@ export default function About() {
         </div>
       </section>
 
-      <CTA />
+      <CTA 
+        title="Join Us in Shaping the Future of Global Logistics" 
+        description="Discover how our decades of experience and vast global network can streamline your business operations."
+      />
     </div>
   );
 }

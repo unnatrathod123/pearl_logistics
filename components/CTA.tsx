@@ -1,9 +1,17 @@
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 
-export default function CTA() {
+interface CTAProps {
+  title?: string;
+  description?: string;
+}
+
+export default function CTA({ 
+  title = "Ready to Elevate Your Global Supply Chain?",
+  description = "Partner with Pearl Logistics for secure, reliable, and on-time commodity trading and transportation worldwide."
+}: CTAProps) {
   return (
-    <section className="py-24 relative overflow-hidden bg-white border-t border-[#E6E6FA]">
+    <section className="pt-24 pb-16 relative overflow-hidden bg-white border-t border-[#E6E6FA]">
       {/* Background with subtle gradient and glassmorphism elements */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#E6E6FA]/20 via-white to-[#CBC3E3]/20 z-0"></div>
       
@@ -13,10 +21,10 @@ export default function CTA() {
 
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#9932CC] via-[#7F5AF0] to-[#CBC3E3] mb-6 tracking-tight drop-shadow-sm pb-2">
-          Ready to Elevate Your Global Supply Chain?
+          {title}
         </h2>
         <p className="text-xl md:text-2xl text-gray-600 mb-10 max-w-3xl mx-auto font-medium">
-          Partner with Pearl Logistics for secure, reliable, and on-time commodity trading and transportation worldwide.
+          {description}
         </p>
         
         <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">

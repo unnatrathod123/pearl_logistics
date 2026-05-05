@@ -137,7 +137,10 @@ export default function Home() {
         </div>
       </section>
 
-      <CTA />
+      <CTA 
+        title="Ready to Elevate Your Global Supply Chain?" 
+        description="Partner with Pearl Logistics for secure, reliable, and on-time commodity trading and transportation worldwide."
+      />
     </div>
   );
 }
