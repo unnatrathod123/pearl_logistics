@@ -14,7 +14,7 @@ export default function ContactPage() {
         {/* Background Image */}
         <div className="absolute inset-0">
           <Image
-            src="/contact_header.png"
+            src="/contact_us.jpg"
             alt="Contact us — Pearl Logistics"
             fill
             className="object-cover"
@@ -22,7 +22,7 @@ export default function ContactPage() {
             priority
           />
           {/* Dark to light gradient overlay */}
-          <div className="absolute inset-0 bg-linear-to-r from-(--surface)/20 via-(--surface-hover)/30 to-(--surface)/20" />
+          <div className="absolute inset-0 bg-linear-to-r from-(--text)/30 via-(--text-muted)/40 to-(--text)/30" />
         </div>
         <div className="absolute top-0 right-0 w-100 h-100 bg-accent opacity-[0.06] rounded-full blur-[100px] pointer-events-none" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -31,7 +31,7 @@ export default function ContactPage() {
             <h1 className="text-4xl md:text-6xl font-bold text-text mb-6 leading-tight">
               Ready to <span className="text-gradient">Work Together?</span>
             </h1>
-            <p className="text-text-muted text-base md:text-lg leading-relaxed">
+            <p className="text-base font-bold md:text-2xl leading-relaxed max-w-3xl mx-auto text-text1">
               Whether you need bulk orders, custom packaging, or international shipping — our team is ready to assist you.
             </p>
           </div>

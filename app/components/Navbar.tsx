@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { Menu, X, Wheat } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
+import { Menu, X, Wheat, ChevronDown } from "lucide-react";
 import Link from "next/link";
 import Image from 'next/image';
 import { usePathname } from "next/navigation";
@@ -9,27 +9,47 @@ import { usePathname } from "next/navigation";
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isProductsOpen, setIsProductsOpen] = useState(false);
+  const [isMobileProductsOpen, setIsMobileProductsOpen] = useState(false);
   const pathname = usePathname();
-
+  const dropdownRef = useRef<HTMLDivElement>(null);
+ 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
+    const handleScroll = () => setIsScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
+ 
   // Close mobile menu on route change
   useEffect(() => {
     setIsMobileMenuOpen(false);
+    setIsProductsOpen(false);
   }, [pathname]);
-
+ 
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+        setIsProductsOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+ 
   const navLinks = [
     { name: "Home", href: "/" },
     { name: "About", href: "/about" },
-    { name: "Products", href: "/products" },
     { name: "Contact Us", href: "/contact" },
   ];
+ 
+  const productSubLinks = [
+    { name: "Rice", href: "/products#normal-rice" },
+    { name: "Basmati Rice", href: "/products#basmati-rice" },
+    { name: "Wheat", href: "/products#wheat" },
+  ];
+ 
+  const isProductsActive = pathname === "/products";
 
   return (
     <nav
@@ -57,7 +77,8 @@ export default function Navbar() {
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center gap-1">
-            {navLinks.filter(l => l.href !== "/contact").map((link) => (
+            {/* Home & About */}
+            {navLinks.filter((l) => l.href !== "/contact").map((link) => (
               <Link
                 key={link.name}
                 href={link.href}
@@ -75,6 +96,62 @@ export default function Navbar() {
                 />
               </Link>
             ))}
+ 
+            {/* Products Dropdown */}
+            <div className="relative" ref={dropdownRef}>
+              <button
+                onClick={() => setIsProductsOpen((prev) => !prev)}
+                className={`relative px-4 py-2 font-medium transition-colors text-md group flex items-center gap-1 ${
+                  isProductsActive ? "text-accent-dark" : "text-text hover:text-accent-dark"
+                }`}
+              >
+                Products
+                <ChevronDown
+                  className={`h-4 w-4 transition-transform duration-200 ${
+                    isProductsOpen ? "rotate-180" : ""
+                  }`}
+                />
+                <span
+                  className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 bg-linear-to-r from-accent to-glow rounded-full transition-all duration-300 ${
+                    isProductsActive ? "w-3/4" : "w-0 group-hover:w-3/4"
+                  }`}
+                />
+              </button>
+ 
+              {/* Dropdown Panel */}
+              <div
+                className={`absolute top-full left-1/2 -translate-x-1/2 mt-2 w-48 glass rounded-2xl shadow-xl border border-border overflow-hidden transition-all duration-200 ${
+                  isProductsOpen
+                    ? "opacity-100 translate-y-0 pointer-events-auto"
+                    : "opacity-0 -translate-y-2 pointer-events-none"
+                }`}
+              >
+                {/* "All Products" link */}
+                <Link
+                  href="/products"
+                  onClick={() => setIsProductsOpen(false)}
+                  className={`block px-4 py-3 text-sm font-semibold border-b border-border transition-colors ${
+                    pathname === "/products"
+                      ? "text-accent-dark bg-surface"
+                      : "text-text hover:bg-surface hover:text-accent-dark"
+                  }`}
+                >
+                  All Products
+                </Link>
+                {productSubLinks.map((sub) => (
+                  <Link
+                    key={sub.name}
+                    href={sub.href}
+                    onClick={() => setIsProductsOpen(false)}
+                    className="block px-4 py-3 text-sm font-medium text-text-muted hover:bg-surface hover:text-accent-dark transition-colors"
+                  >
+                    {sub.name}
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            {/* Contact Us CTA */}
             <Link
               href="/contact"
               className="ml-3 btn-primary text-md py-2.5! px-6! inline-flex items-center gap-2"
@@ -103,11 +180,11 @@ export default function Navbar() {
       {/* Mobile Menu */}
       <div
         className={`md:hidden absolute top-full left-0 right-0 glass shadow-xl border-t border-border transition-all duration-300 overflow-hidden ${
-          isMobileMenuOpen ? "max-h-100 opacity-100" : "max-h-0 opacity-0"
+          isMobileMenuOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0"
         }`}
       >
         <div className="px-4 pt-3 pb-6 space-y-1">
-          {navLinks.filter(l => l.href !== "/contact").map((link) => (
+          {navLinks.filter((l) => l.href !== "/contact").map((link) => (
             <Link
               key={link.name}
               href={link.href}
@@ -120,6 +197,50 @@ export default function Navbar() {
               {link.name}
             </Link>
           ))}
+ 
+          {/* Mobile Products Accordion */}
+          <div>
+            <button
+              onClick={() => setIsMobileProductsOpen((prev) => !prev)}
+              className={`w-full flex items-center justify-between px-4 py-3 rounded-xl font-medium transition-colors ${
+                isProductsActive
+                  ? "bg-surface text-accent-dark"
+                  : "text-text hover:bg-surface hover:text-accent-dark"
+              }`}
+            >
+              Products
+              <ChevronDown
+                className={`h-4 w-4 transition-transform duration-200 ${
+                  isMobileProductsOpen ? "rotate-180" : ""
+                }`}
+              />
+            </button>
+ 
+            <div
+              className={`overflow-hidden transition-all duration-300 ${
+                isMobileProductsOpen ? "max-h-60" : "max-h-0"
+              }`}
+            >
+              <div className="ml-4 mt-1 space-y-1 border-l-2 border-accent/30 pl-3">
+                <Link
+                  href="/products"
+                  className="block px-3 py-2 rounded-lg text-sm font-semibold text-text hover:bg-surface hover:text-accent-dark transition-colors"
+                >
+                  All Products
+                </Link>
+                {productSubLinks.map((sub) => (
+                  <Link
+                    key={sub.name}
+                    href={sub.href}
+                    className="block px-3 py-2 rounded-lg text-sm text-text-muted hover:bg-surface hover:text-accent-dark transition-colors"
+                  >
+                    {sub.name}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
+ 
           <div className="pt-3">
             <Link
               href="/contact"
