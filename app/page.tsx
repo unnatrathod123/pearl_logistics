@@ -1,146 +1,185 @@
-import { ShieldCheck, Clock, Globe, Search, Target, Award } from 'lucide-react';
-import Image from 'next/image';
-import CTA from '@/components/CTA';
+import { ArrowRight, Leaf, ShieldCheck, Globe } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import FloatingGrains from "@/app/components/FloatingGrains";
+import ProductCard from "@/app/components/ProductCard";
 
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
-      {/* Hero Section */}
-      <section className="relative w-full min-h-[calc(100vh-80px)] snap-start flex items-center justify-center overflow-hidden">
-        {/* Background image */}
-        <div className="absolute inset-0 w-full h-full animate-fade-in">
-          <Image
-            src="/RIce_&_Wheat_In_Hand.jpeg"
-            alt="Golden wheat field representing our core agricultural commodities"
-            fill
-            className="object-cover brightness-[0.5]"
-            priority
-            unoptimized
-          />
+
+      {/* ═══════════════════════ HERO SECTION ═══════════════════════ */}
+      <section
+        className="relative min-h-screen flex items-center pt-20 overflow-hidden"
+        style={{
+          background: "linear-gradient(160deg, var(--bg) 0%, var(--bg-alt) 30%, var(--surface) 60%, var(--bg-alt) 100%)",
+        }}
+      >
+        <FloatingGrains />
+
+        {/* Decorative rings */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-175 h-175 rounded-full border border-border opacity-20 animate-spin-slow pointer-events-none" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-125 h-125 rounded-full border border-accent-light opacity-15 animate-spin-slow pointer-events-none" style={{ animationDirection: "reverse", animationDuration: "30s" }} />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            {/* Left Content */}
+            <div className="space-y-8 text-center lg:text-left animate-fade-in-up">
+              <div className="section-label mx-auto lg:mx-0">
+                <Leaf className="h-4 w-4" />
+                <span>Premium Quality Grains</span>
+              </div>
+
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-text tracking-tight leading-[1.08]">
+                Nourishing the{" "}
+                <br className="hidden sm:block" />
+                World with{" "}
+                <span className="text-gradient">Premium Grains</span>
+              </h1>
+
+              <p className="text-base sm:text-lg text-text-muted max-w-xl mx-auto lg:mx-0 leading-relaxed">
+                Pearl Logistics specializes in the finest Basmati Rice, Normal Rice, and
+                high-grade Wheat. From farm to your doorstep with uncompromising
+                reliability and global reach.
+              </p>
+
+              <div className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start">
+                <Link
+                  href="/products"
+                  className="btn-primary w-full sm:w-auto inline-flex items-center justify-center gap-2 text-base"
+                >
+                  <span className="relative z-10 flex items-center gap-2">
+                    Explore Products <ArrowRight className="h-5 w-5" />
+                  </span>
+                </Link>
+                <Link
+                  href="/about"
+                  className="btn-secondary w-full sm:w-auto inline-flex items-center justify-center text-base"
+                >
+                  Learn More
+                </Link>
+              </div>
+            </div>
+
+            {/* Right — Hero Image */}
+            <div className="relative hidden lg:block">
+              <div className="relative h-135 w-full">
+                {/* Glow behind card */}
+                <div className="absolute inset-4 bg-linear-to-tr from-accent to-glow rounded-[2.5rem] opacity-15 blur-2xl" />
+
+                {/* Main image container */}
+                <div className="absolute inset-0 rounded-[2.5rem] overflow-hidden shadow-2xl border border-border">
+                  <Image
+                    src="/RIce_&_Wheat_In_Hand.jpeg"
+                    alt="Premium grain fields — Pearl Logistics"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 1024px) 0vw, 50vw"
+                    priority
+                  />
+                  <div className="absolute inset-0 bg-linear-to-t from-accent-dark/30 to-transparent pointer-events-none" />
+                </div>
+
+                {/* Floating badge */}
+                <div className="absolute -bottom-4 -left-4 glass-purple rounded-2xl p-5 shadow-xl z-20 animate-float-medium" style={{ animationDelay: "1s" }}>
+                  <div className="flex items-center gap-3">
+                    <div className="w-12 h-12 rounded-xl bg-linear-to-br from-accent to-accent-dark flex items-center justify-center">
+                      <ShieldCheck className="h-6 w-6 text-white" />
+                    </div>
+                    <div>
+                      <p className="font-bold text-text text-sm">100% Certified</p>
+                      <p className="text-xs text-text-muted">Premium Export Quality</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Top-right badge */}
+                <div className="absolute -top-3 -right-3 glass rounded-xl px-4 py-3 shadow-lg z-20 animate-float-medium" style={{ animationDelay: "2s" }}>
+                  <div className="flex items-center gap-2">
+                    <Globe className="h-5 w-5 text-accent" />
+                    <span className="text-sm font-semibold text-text">Global Reach</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+      </section>
 
-        <div className="relative z-10 text-center px-4 max-w-4xl mx-auto flex flex-col items-center animate-fade-in-up">
-          <h1 className="text-5xl md:text-6xl lg:text-7xl leading-tight font-extrabold text-transparent bg-clip-text bg-linear-to-r from-[#9932CC] via-[#7F5AF0] to-[#CBC3E3] mb-6 tracking-tight drop-shadow-lg">
-            Delivering Your World, <span className="bg-clip-text bg-linear-to-r from-[#7F5AF0] to-[#CBC3E3] drop-shadow-md">On Time.</span>
-          </h1>
-          <p className="text-lg md:text-xl text-gray-200 mb-10 max-w-2xl font-medium drop-shadow-md">
-            Fast, reliable, and secure logistics solutions for modern businesses around the globe.
-          </p>
+      {/* ═══════════════════════ FEATURED PRODUCTS PREVIEW ═══════════════════════ */}
+      <section className="py-20 md:py-28 relative" style={{ background: "var(--bg)" }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+            <div>
+              <div className="section-label mb-4">
+                <Leaf className="h-4 w-4" />
+                <span>Our Products</span>
+              </div>
+              <h2 className="text-3xl md:text-5xl font-bold text-text leading-tight">
+                Premium{" "}
+                <span className="text-gradient">Commodities</span>
+              </h2>
+            </div>
+            <Link
+              href="/products"
+              className="btn-secondary inline-flex items-center gap-2 self-start md:self-auto"
+            >
+              View All Products <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
 
-          {/* Track Shipment Mock Input */}
-          <div className="w-full max-w-2xl bg-white/20 backdrop-blur-md p-2 rounded-2xl shadow-2xl flex border border-white/30 hover:border-white/50 transition-colors">
-            <input
-              type="text"
-              placeholder="Enter your tracking number..."
-              className="flex-1 bg-white/95 px-6 py-4 rounded-l-xl outline-none text-gray-800 placeholder-gray-500 font-medium"
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <ProductCard
+              name="Basmati Rice"
+              image="/images/basmati_rice.png"
+              badge="Best Seller"
+              href="/products"
             />
-            <button className="bg-[#7F5AF0] hover:bg-[#6c4be0] text-white px-8 py-4 rounded-r-xl font-bold transition-all flex items-center gap-2 hover:shadow-lg hover:shadow-[#7F5AF0]/30">
-              <Search size={20} /> <span className="hidden sm:inline">Track</span>
-            </button>
+            <ProductCard
+              name="Normal Rice"
+              image="/images/normal_rice.png"
+              href="/products"
+            />
+            <ProductCard
+              name="Premium Wheat"
+              image="/images/wheat_grains.png"
+              href="/products"
+            />
           </div>
         </div>
       </section>
 
-      {/* Why Choose Us Section */}
-      <section className="py-24 bg-white min-h-[calc(100vh-80px)] snap-start flex flex-col justify-center">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Why Choose Pearl Logistics?</h2>
-            <p className="text-gray-500 max-w-2xl mx-auto text-lg">
-              We provide industry-leading logistics solutions designed to scale with your business and deliver unmatched reliability.
+      {/* ═══════════════════════ CTA SECTION ═══════════════════════ */}
+      <section className="py-16" style={{ background: "linear-gradient(180deg, var(--bg-alt) 0%, var(--bg) 100%)" }}>
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="glass-purple rounded-3xl p-10 md:p-14 border border-accent-light/30">
+            <h2 className="text-3xl md:text-4xl font-bold text-text mb-4">
+              Ready to Partner with Us?
+            </h2>
+            <p className="text-text-muted mb-8 max-w-lg mx-auto text-base md:text-lg">
+              We offer competitive pricing for bulk exports with custom packaging
+              and international shipping support to 50+ countries.
             </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-            {/* Feature 1 */}
-            <div className="bg-[#E6E6FA]/20 p-8 rounded-3xl border border-[#E6E6FA] text-center hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-              <div className="bg-[#7F5AF0]/10 w-20 h-20 mx-auto rounded-full flex items-center justify-center mb-6">
-                <Globe className="text-[#7F5AF0]" size={40} />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">Global Network</h3>
-              <p className="text-gray-600 leading-relaxed">
-                Our extensive worldwide network ensures your shipments reach any destination with speed and precision.
-              </p>
-            </div>
-
-            {/* Feature 2 */}
-            <div className="bg-[#E6E6FA]/20 p-8 rounded-3xl border border-[#E6E6FA] text-center hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-              <div className="bg-[#7F5AF0]/10 w-20 h-20 mx-auto rounded-full flex items-center justify-center mb-6">
-                <Clock className="text-[#7F5AF0]" size={40} />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">On-Time Delivery</h3>
-              <p className="text-gray-600 leading-relaxed">
-                We pride ourselves on punctuality, offering guaranteed delivery times so you can plan with confidence.
-              </p>
-            </div>
-
-            {/* Feature 3 */}
-            <div className="bg-[#E6E6FA]/20 p-8 rounded-3xl border border-[#E6E6FA] text-center hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-              <div className="bg-[#7F5AF0]/10 w-20 h-20 mx-auto rounded-full flex items-center justify-center mb-6">
-                <ShieldCheck className="text-[#7F5AF0]" size={40} />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">Secure Transport</h3>
-              <p className="text-gray-600 leading-relaxed">
-                Top-tier security protocols protect your valuable cargo at every step of its journey.
-              </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Link
+                href="/contact"
+                className="btn-primary inline-flex items-center gap-2"
+              >
+                <span className="relative z-10 flex items-center gap-2">
+                  Get a Quote <ArrowRight className="h-5 w-5" />
+                </span>
+              </Link>
+              <Link
+                href="/about"
+                className="btn-secondary inline-flex items-center gap-2"
+              >
+                Learn About Us
+              </Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* History & Mission */}
-      <section className="py-24 bg-gray-50 border-t border-[#E6E6FA] min-h-[calc(100vh-80px)] snap-start flex flex-col justify-center">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-            <div>
-              <div className="relative w-full aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl">
-                <Image
-                  src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=2070"
-                  alt="Warehouse operations"
-                  fill
-                  className="object-cover"
-                  unoptimized
-                />
-              </div>
-            </div>
-            <div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">Our Journey</h2>
-              <p className="text-gray-600 text-lg mb-6 leading-relaxed">
-                Pearl Logistics began with a simple mission: to make global shipping accessible, reliable, and transparent for businesses of all sizes. Over the decades, we've grown from a local freight forwarder into a global logistics powerhouse.
-              </p>
-
-              <div className="flex items-start gap-4 mb-6 mt-10">
-                <div className="bg-[#7F5AF0] p-3 rounded-xl shadow-lg shrink-0">
-                  <Target className="text-white" size={28} />
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">Our Mission</h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    To empower global commerce by delivering innovative, sustainable, and highly efficient supply chain solutions.
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4">
-                <div className="bg-[#7F5AF0] p-3 rounded-xl shadow-lg shrink-0">
-                  <Award className="text-white" size={28} />
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">Our Vision</h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    To be the world's most trusted logistics partner, known for our technological edge and unwavering commitment to customer success.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <CTA 
-        title="Ready to Elevate Your Global Supply Chain?" 
-        description="Partner with Pearl Logistics for secure, reliable, and on-time commodity trading and transportation worldwide."
-      />
     </div>
   );
 }

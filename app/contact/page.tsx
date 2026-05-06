@@ -1,128 +1,116 @@
-import { MapPin, Phone, Mail, Clock } from 'lucide-react';
-import Image from 'next/image';
+import type { Metadata } from "next";
+import { Mail, Phone, MapPin, ArrowRight } from "lucide-react";
+import Image from "next/image";
+export const metadata: Metadata = {
+  title: "Contact Us — Pearl Logistics",
+  description: "Get in touch with Pearl Logistics for bulk orders, custom packaging, or international shipping inquiries. Our trade experts respond within 24 hours.",
+};
 
-export default function Contact() {
+export default function ContactPage() {
   return (
-    <div className="bg-slate-50 min-h-screen pb-24">
-      {/* Header */}
-      <section className="relative py-24 md:py-32 overflow-hidden flex items-center justify-center">
-        <div className="absolute inset-0 w-full h-full">
+    <div className="flex flex-col min-h-screen pt-20">
+      {/* PAGE HEADER */}
+      <section className="py-16 md:py-24 relative overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0">
           <Image
             src="/contact_header.png"
-            alt="Contact Pearl Logistics"
+            alt="Contact us — Pearl Logistics"
             fill
             className="object-cover"
+            sizes="100vw"
             priority
-            unoptimized
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/50 to-black/20"></div>
+          {/* Dark to light gradient overlay */}
+          <div className="absolute inset-0 bg-linear-to-r from-(--surface)/20 via-(--surface-hover)/30 to-(--surface)/20" />
         </div>
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center animate-fade-in-up">
-          <h1 className="text-5xl md:text-6xl lg:text-7xl leading-tight font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#9932CC] via-[#7F5AF0] to-[#CBC3E3] mb-6 tracking-tight drop-shadow-lg">Get in Touch</h1>
-          <p className="text-xl text-[#E6E6FA] max-w-2xl mx-auto font-medium drop-shadow-md">
-            Ready to optimize your supply chain? Our logistics experts are here to help you navigate global trade.
-          </p>
+        <div className="absolute top-0 right-0 w-100 h-100 bg-accent opacity-[0.06] rounded-full blur-[100px] pointer-events-none" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center max-w-2xl mx-auto animate-fade-in-up">
+            <div className="section-label mx-auto mb-4"><Mail className="h-4 w-4" /><span>Contact Us</span></div>
+            <h1 className="text-4xl md:text-6xl font-bold text-text mb-6 leading-tight">
+              Ready to <span className="text-gradient">Work Together?</span>
+            </h1>
+            <p className="text-text-muted text-base md:text-lg leading-relaxed">
+              Whether you need bulk orders, custom packaging, or international shipping — our team is ready to assist you.
+            </p>
+          </div>
         </div>
       </section>
 
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-          {/* Contact Information */}
-          <div>
-            <h2 className="text-3xl font-bold text-gray-900 mb-8">Contact Information</h2>
+      {/* CONTACT FORM */}
+      <section className="py-12 md:py-20" style={{ background: "var(--bg)" }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="rounded-4xl overflow-hidden shadow-2xl border border-border relative">
+            <div className="absolute -top-20 -right-20 w-80 h-80 bg-accent opacity-5 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-glow opacity-8 rounded-full blur-3xl pointer-events-none" />
 
-            <div className="space-y-8 mb-12">
-              <div className="flex items-start gap-4">
-                <div className="bg-[#E6E6FA] p-4 rounded-2xl text-[#7F5AF0]">
-                  <MapPin size={28} />
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-1">Global Headquarters</h3>
-                  <p className="text-gray-600">123 Logistics Avenue<br />New York, NY 10001<br />United States</p>
+            <div className="grid grid-cols-1 lg:grid-cols-2 relative z-10">
+              {/* Left — Info Panel */}
+              <div className="p-10 md:p-16 flex flex-col justify-center text-white relative overflow-hidden" style={{ background: "linear-gradient(135deg, var(--accent-dark) 0%, #5b2d9e 50%, var(--accent) 100%)" }}>
+                <div className="absolute top-0 right-0 w-40 h-40 bg-white opacity-5 rounded-full -translate-y-1/2 translate-x-1/2" />
+                <div className="absolute bottom-0 left-0 w-60 h-60 bg-white opacity-[0.03] rounded-full translate-y-1/3 -translate-x-1/3" />
+
+                <h2 className="text-3xl md:text-4xl font-bold mb-4 relative z-10">Let&apos;s Start a<br />Conversation</h2>
+                <p className="text-white/70 text-base mb-10 max-w-sm relative z-10">
+                  Reach out for bulk orders, custom packaging, or international shipping inquiries. Our trade experts respond within 24 hours.
+                </p>
+
+                <div className="space-y-6 relative z-10">
+                  {[
+                    { icon: Mail, label: "Email Us", value: "sales@pearllogistics.com" },
+                    { icon: Phone, label: "Call Us", value: "+91 98765 43210" },
+                    { icon: MapPin, label: "Visit Us", value: "Pearl Logistics HQ, Industrial Area, Karnal, Haryana" },
+                  ].map((item, i) => (
+                    <div key={i} className="flex items-start gap-4">
+                      <div className="w-11 h-11 rounded-xl bg-white/10 backdrop-blur-sm flex items-center justify-center shrink-0">
+                        <item.icon className="h-5 w-5 text-white" />
+                      </div>
+                      <div>
+                        <p className="text-sm text-white/60">{item.label}</p>
+                        <p className="font-medium text-white">{item.value}</p>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
 
-              <div className="flex items-start gap-4">
-                <div className="bg-[#E6E6FA] p-4 rounded-2xl text-[#7F5AF0]">
-                  <Phone size={28} />
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-1">Phone</h3>
-                  <p className="text-gray-600">+1 (555) 123-4567<br />+1 (555) 987-6543 (Support)</p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4">
-                <div className="bg-[#E6E6FA] p-4 rounded-2xl text-[#7F5AF0]">
-                  <Mail size={28} />
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-1">Email</h3>
-                  <p className="text-gray-600">contact@pearllogistics.com<br />support@pearllogistics.com</p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4">
-                <div className="bg-[#E6E6FA] p-4 rounded-2xl text-[#7F5AF0]">
-                  <Clock size={28} />
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-1">Operating Hours</h3>
-                  <p className="text-gray-600">Monday - Friday: 8:00 AM - 6:00 PM (EST)<br />24/7 Global Support Line Available</p>
-                </div>
+              {/* Right — Form */}
+              <div className="p-8 md:p-14 bg-white">
+                <form className="space-y-5">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    <div>
+                      <label className="block text-sm font-medium text-text mb-1.5">First Name</label>
+                      <input type="text" className="w-full px-4 py-3 rounded-xl border border-border focus:ring-2 focus:ring-accent focus:border-transparent outline-none transition-all bg-bg text-text" placeholder="John" />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-text mb-1.5">Last Name</label>
+                      <input type="text" className="w-full px-4 py-3 rounded-xl border border-border focus:ring-2 focus:ring-accent focus:border-transparent outline-none transition-all bg-bg text-text" placeholder="Doe" />
+                    </div>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-text mb-1.5">Email</label>
+                    <input type="email" className="w-full px-4 py-3 rounded-xl border border-border focus:ring-2 focus:ring-accent focus:border-transparent outline-none transition-all bg-bg text-text" placeholder="john@company.com" />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-text mb-1.5">Product Interest</label>
+                    <select className="w-full px-4 py-3 rounded-xl border border-border focus:ring-2 focus:ring-accent focus:border-transparent outline-none transition-all bg-bg text-text">
+                      <option>Basmati Rice</option>
+                      <option>Normal Rice</option>
+                      <option>Premium Wheat</option>
+                      <option>Multiple / General Inquiry</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-text mb-1.5">Message</label>
+                    <textarea rows={4} className="w-full px-4 py-3 rounded-xl border border-border focus:ring-2 focus:ring-accent focus:border-transparent outline-none transition-all bg-bg text-text resize-none" placeholder="Tell us about your requirements — quantity, destination, packaging preferences..." />
+                  </div>
+                  <button type="button" className="w-full btn-primary rounded-xl! text-base">
+                    <span className="relative z-10 flex items-center justify-center gap-2">Send Message <ArrowRight className="h-5 w-5" /></span>
+                  </button>
+                </form>
               </div>
             </div>
-
-            {/* Map Placeholder */}
-            <div className="w-full h-64 bg-gray-200 rounded-3xl overflow-hidden relative shadow-inner">
-              <div className="absolute inset-0 flex items-center justify-center flex-col text-gray-500">
-                <MapPin size={48} className="mb-4 text-gray-400" />
-                <span className="font-medium text-lg">Interactive Map Placeholder</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Contact Form */}
-          <div className="bg-white p-10 rounded-3xl shadow-xl border border-gray-100">
-            <h2 className="text-3xl font-bold text-gray-900 mb-8">Send us a Message</h2>
-            <form className="space-y-6">
-              <div>
-                <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-2">Full Name</label>
-                <input
-                  type="text"
-                  id="name"
-                  className="w-full px-5 py-4 rounded-xl bg-gray-50 border border-gray-200 focus:border-[#7F5AF0] focus:ring-2 focus:ring-[#7F5AF0]/20 transition-all outline-none"
-                  placeholder="John Doe"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">Email Address</label>
-                <input
-                  type="email"
-                  id="email"
-                  className="w-full px-5 py-4 rounded-xl bg-gray-50 border border-gray-200 focus:border-[#7F5AF0] focus:ring-2 focus:ring-[#7F5AF0]/20 transition-all outline-none"
-                  placeholder="john@example.com"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="message" className="block text-sm font-semibold text-gray-700 mb-2">Message</label>
-                <textarea
-                  id="message"
-                  rows={6}
-                  className="w-full px-5 py-4 rounded-xl bg-gray-50 border border-gray-200 focus:border-[#7F5AF0] focus:ring-2 focus:ring-[#7F5AF0]/20 transition-all outline-none resize-none"
-                  placeholder="How can we help you?"
-                ></textarea>
-              </div>
-
-              <button
-                type="button"
-                className="w-full bg-[#7F5AF0] hover:bg-[#6c4be0] text-white font-bold py-4 rounded-xl transition-all shadow-lg hover:shadow-[#7F5AF0]/30"
-              >
-                Send Message
-              </button>
-            </form>
           </div>
         </div>
       </section>

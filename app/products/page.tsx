@@ -1,229 +1,136 @@
-'use client';
+import type { Metadata } from "next";
+import { TrendingUp, ArrowRight } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import ProductCard from "@/app/components/ProductCard";
 
-import { Leaf, Wheat, Search, MapPin, Package, Filter, CheckCircle2 } from 'lucide-react';
-import Image from 'next/image';
-import Link from 'next/link';
-import { useState } from 'react';
-import CTA from '@/components/CTA';
+export const metadata: Metadata = {
+  title: "Products — Pearl Logistics",
+  description: "Explore our premium range of Basmati Rice, Normal Rice, and high-grade Wheat. Export-quality grains processed to international standards.",
+};
 
-// Products catalog
-const products = [
-  {
-    id: 1,
-    name: 'Basmati Rice',
-    description: 'Long-grain, aromatic rice known for its delicate flavor and separate grains.',
-    icon: <Leaf className="text-[#7F5AF0]" size={18} />,
-    image: 'https://images.unsplash.com/photo-1586201375761-83865001e31c?q=80&w=2070',
-    category: 'Rice',
-    origin: 'India',
-    moq: '25 Metric Tons',
-    supply: '5000 MT/Month',
-    verified: true,
-  },
-  {
-    id: 2,
-    name: 'Wheat',
-    description: 'High-protein milling wheat, carefully selected and transported.',
-    icon: <Wheat className="text-[#7F5AF0]" size={18} />,
-    image: 'https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?q=80&w=2089',
-    category: 'Wheat',
-    origin: 'India',
-    moq: '50 Metric Tons',
-    supply: '10000 MT/Month',
-    verified: true,
-  },
-  {
-    id: 3,
-    name: 'Long Grain White Rice (Normal)',
-    description: 'High-quality, versatile non-basmati white rice suitable for everyday consumption and commercial use.',
-    icon: <Leaf className="text-[#7F5AF0]" size={18} />,
-    image: '/normal_rice.png',
-    category: 'Rice',
-    origin: 'India',
-    moq: '50 Metric Tons',
-    supply: '8000 MT/Month',
-    verified: true,
-  }
-];
-
-const categories = ['All', 'Rice', 'Wheat'];
-
-export default function Products() {
-  const [activeCategory, setActiveCategory] = useState('All');
-  const [searchQuery, setSearchQuery] = useState('');
-
-  const filteredProducts = products.filter(product => {
-    const matchesCategory = activeCategory === 'All' || product.category === activeCategory;
-    const matchesSearch = product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      product.category.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchesCategory && matchesSearch;
-  });
-
+export default function ProductsPage() {
   return (
-    <div className="bg-[#f8f9fc] min-h-screen">
-      {/* Header */}
-      <section className="relative py-24 md:py-32 overflow-hidden flex items-center justify-center">
-        <div className="absolute inset-0 w-full h-full">
+    <div className="flex flex-col min-h-screen pt-20">
+      {/* PAGE HEADER */}
+      <section className="py-16 md:py-24 relative overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0">
           <Image
-            src="/RIce_&_Wheat.jpeg"
-            alt="Lush green rice terraces"
+            src="/Grains_in_bowl.jpeg"
+            alt="Rice and wheat grains in bowls"
             fill
-            className="object-cover brightness-[0.4]"
+            className="object-cover"
+            sizes="100vw"
             priority
-            unoptimized
           />
+          {/* Dark to light gradient overlay */}
+          <div className="absolute inset-0 bg-linear-to-r from-(--surface)/20 via-(--surface-hover)/30 to-(--surface)/20" />
         </div>
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center animate-fade-in-up">
-          <h1 className="text-5xl md:text-6xl lg:text-7xl leading-tight font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#9932CC] via-[#7F5AF0] to-[#CBC3E3] mb-6 tracking-tight drop-shadow-lg">Global Commodity Trading</h1>
-          <p className="text-xl text-gray-200 max-w-2xl mx-auto font-medium drop-shadow-md">
-            Source high-quality agricultural commodities directly from verified global suppliers.
-          </p>
+        <div className="absolute top-0 right-0 w-100 h-100 bg-accent opacity-[0.06] rounded-full blur-[100px] pointer-events-none" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center max-w-3xl mx-auto animate-fade-in-up">
+            <div className="section-label mx-auto mb-4"><TrendingUp className="h-4 w-4" /><span>Our Products</span></div>
+            <h1 className="text-4xl md:text-6xl font-bold text-text mb-6 leading-tight">
+              Wide Commodities, <span className="text-gradient">Premium Quality</span>
+            </h1>
+            <p className="text-text-muted text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
+              Discover our carefully curated selection of high-grade grains, processed and packaged to international export standards.
+            </p>
+          </div>
         </div>
       </section>
 
-      {/* Catalog Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10 mb-24">
-        <div className="flex flex-col lg:flex-row gap-8">
+      {/* PRODUCTS BANNER */}
+      <section className="py-8" style={{ background: "var(--bg)" }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="relative w-full h-50 md:h-80 rounded-3xl overflow-hidden shadow-lg border border-border">
+            <Image src="/images/products_banner.png" alt="Premium grain commodities — Rice, Wheat" fill className="object-cover" sizes="100vw" />
+            <div className="absolute inset-0 bg-linear-to-r from-accent-dark/50 via-transparent to-(--accent)/30 pointer-events-none" />
+            <div className="absolute bottom-6 left-6 md:bottom-10 md:left-10 z-10">
+              <h2 className="text-white text-2xl md:text-4xl font-bold drop-shadow-lg mb-1">Premium Agri Commodities</h2>
+              <p className="text-white/80 text-sm md:text-base drop-shadow">Export-quality rice &amp; wheat from India&apos;s finest farms</p>
+            </div>
+          </div>
+        </div>
+      </section>
 
-          {/* Sidebar */}
-          <div className="w-full lg:w-1/4 flex-shrink-0">
-            <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 relative lg:sticky lg:top-28 z-10">
-              <div className="flex items-center gap-2 mb-6 text-gray-900 font-bold text-xl">
-                <Filter size={20} className="text-[#7F5AF0]" />
-                <h2>Filters</h2>
-              </div>
-
-              {/* Search */}
-              <div className="mb-8">
-                <label className="block text-sm font-semibold text-gray-700 mb-2">Search Products</label>
-                <div className="relative">
-                  <input
-                    type="text"
-                    placeholder="e.g. Basmati Rice"
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full pl-10 pr-4 py-3 rounded-xl bg-white border border-gray-200 focus:border-[#7F5AF0] focus:ring-2 focus:ring-[#7F5AF0]/20 transition-all outline-none text-sm text-gray-900 placeholder:text-gray-400"
-                  />
-                  <Search size={16} className="absolute left-4 top-3.5 text-gray-400" />
-                </div>
-              </div>
-
-              {/* Categories */}
-              <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-3">Categories</label>
-                <ul className="space-y-2">
-                  {categories.map((category) => (
-                    <li key={category}>
-                      <button
-                        onClick={() => setActiveCategory(category)}
-                        className={`w-full text-left px-4 py-2.5 rounded-xl transition-all duration-200 text-sm font-medium border border-transparent ${activeCategory === category
-                          ? 'bg-[#E6E6FA] text-[#7F5AF0] border-[#E6E6FA]'
-                          : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900 border-transparent'
-                          }`}
-                      >
-                        {category}
-                      </button>
-                    </li>
-                  ))}
+      {/* PRODUCT GRID */}
+      <section className="py-12 md:py-20" style={{ background: "var(--bg)" }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Basmati Rice */}
+            <div className="space-y-6">
+              <ProductCard name="Basmati Rice" image="/images/basmati_rice.png" badge="Best Seller" href="/contact" />
+              <div className="feature-card p-6!">
+                <h3 className="text-lg font-bold text-text mb-2">Basmati Rice</h3>
+                <p className="text-text-muted text-sm leading-relaxed mb-4">
+                  Long-grain, aromatic perfection. Known for its distinct flavor and fluffy texture, ideal for biryanis and premium dishes. Sourced from India&apos;s finest paddy fields.
+                </p>
+                <ul className="space-y-2 text-sm text-text-muted">
+                  <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-accent" />Extra-long grain (8mm+)</li>
+                  <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-accent" />Aged for enhanced aroma</li>
+                  <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-accent" />Non-GMO, pesticide-free</li>
                 </ul>
+                <Link href="/contact" className="mt-4 inline-flex items-center text-sm font-semibold text-accent hover:text-accent-dark transition-colors">
+                  Inquire Now <ArrowRight className="h-4 w-4 ml-1" />
+                </Link>
+              </div>
+            </div>
+
+            {/* Normal Rice */}
+            <div className="space-y-6">
+              <ProductCard name="Normal Rice" image="/images/normal_rice.png" href="/contact" />
+              <div className="feature-card p-6!">
+                <h3 className="text-lg font-bold text-text mb-2">Normal Rice</h3>
+                <p className="text-text-muted text-sm leading-relaxed mb-4">
+                  High-quality, versatile daily rice. Carefully milled for maximum nutrition and consistent cooking results. Perfect for everyday consumption worldwide.
+                </p>
+                <ul className="space-y-2 text-sm text-text-muted">
+                  <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-accent" />Premium milled quality</li>
+                  <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-accent" />High nutritional value</li>
+                  <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-accent" />Consistent grain size</li>
+                </ul>
+                <Link href="/contact" className="mt-4 inline-flex items-center text-sm font-semibold text-accent hover:text-accent-dark transition-colors">
+                  Inquire Now <ArrowRight className="h-4 w-4 ml-1" />
+                </Link>
+              </div>
+            </div>
+
+            {/* Premium Wheat */}
+            <div className="space-y-6">
+              <ProductCard name="Premium Wheat" image="/images/wheat_grains.png" href="/contact" />
+              <div className="feature-card p-6!">
+                <h3 className="text-lg font-bold text-text mb-2">Premium Wheat</h3>
+                <p className="text-text-muted text-sm leading-relaxed mb-4">
+                  Rich, golden wheat kernels sourced from the finest farms. Perfect for milling into high-quality flour for all baking and culinary needs.
+                </p>
+                <ul className="space-y-2 text-sm text-text-muted">
+                  <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-accent" />High gluten content</li>
+                  <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-accent" />Golden, plump kernels</li>
+                  <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-accent" />Export-grade certified</li>
+                </ul>
+                <Link href="/contact" className="mt-4 inline-flex items-center text-sm font-semibold text-accent hover:text-accent-dark transition-colors">
+                  Inquire Now <ArrowRight className="h-4 w-4 ml-1" />
+                </Link>
               </div>
             </div>
           </div>
-
-          {/* Main Content */}
-          <div className="flex-1">
-            {/* Top Bar */}
-            <div className="bg-white p-4 rounded-2xl shadow-sm border border-gray-100 mb-6 flex flex-col sm:flex-row justify-between items-center gap-4">
-              <p className="text-gray-600 font-medium">
-                Showing <span className="text-gray-900 font-bold">{filteredProducts.length}</span> results
-                {activeCategory !== 'All' && <span> for <span className="text-[#7F5AF0]">{activeCategory}</span></span>}
-              </p>
-            </div>
-
-            {/* Product Grid */}
-            {filteredProducts.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {filteredProducts.map((product) => (
-                  <div key={product.id} className="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-xl transition-all duration-300 group flex flex-col">
-                    {/* Image Area */}
-                    <div className="relative h-56 w-full overflow-hidden bg-gray-100">
-                      <Image
-                        src={product.image}
-                        alt={product.name}
-                        fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-700"
-                        unoptimized
-                      />
-                      <div className="absolute top-3 left-3 bg-white/95 backdrop-blur-sm px-3 py-1.5 rounded-lg text-xs font-bold text-[#7F5AF0] flex items-center gap-1.5 shadow-sm">
-                        {product.icon} {product.category}
-                      </div>
-                    </div>
-
-                    {/* Content Area */}
-                    <div className="p-6 flex flex-col flex-1">
-                      <h3 className="text-lg font-bold text-gray-900 mb-2 line-clamp-2" title={product.name}>
-                        {product.name}
-                      </h3>
-
-                      {/* Specs */}
-                      <div className="mt-4 space-y-3 mb-6 flex-1">
-                        <div className="flex items-start gap-3">
-                          <MapPin size={16} className="text-gray-400 mt-0.5 shrink-0" />
-                          <div>
-                            <p className="text-xs text-gray-500 font-medium uppercase tracking-wider">Origin</p>
-                            <p className="text-sm text-gray-900 font-semibold">{product.origin}</p>
-                          </div>
-                        </div>
-                        {/* <div className="flex items-start gap-3">
-                          <Package size={16} className="text-gray-400 mt-0.5 shrink-0" />
-                          <div>
-                            <p className="text-xs text-gray-500 font-medium uppercase tracking-wider">Min. Order (MOQ)</p>
-                            <p className="text-sm text-gray-900 font-semibold">{product.moq}</p>
-                          </div>
-                        </div>
-                        <div className="flex items-start gap-3">
-                          <Search size={16} className="text-gray-400 mt-0.5 shrink-0" />
-                          <div>
-                            <p className="text-xs text-gray-500 font-medium uppercase tracking-wider">Supply Ability</p>
-                            <p className="text-sm text-gray-900 font-semibold">{product.supply}</p>
-                          </div>
-                        </div> */}
-                      </div>
-
-                      {/* Actions */}
-                      <div className="flex gap-3 mt-auto pt-4 border-t border-gray-100">
-                        <button className="flex-1 bg-[#E6E6FA] hover:bg-[#7F5AF0] text-[#7F5AF0] hover:text-white font-bold py-3 rounded-xl transition-colors duration-300 text-sm">
-                          Get Latest Price
-                        </button>
-                        <Link href="/contact" className="flex-1 block text-center bg-white border-2 border-gray-200 hover:border-[#7F5AF0] hover:text-[#7F5AF0] text-gray-700 font-bold py-3 rounded-xl transition-colors duration-300 text-sm">
-                          Contact Supplier
-                        </Link>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <div className="bg-white rounded-2xl p-16 text-center shadow-sm border border-gray-100">
-                <Search size={48} className="mx-auto text-gray-300 mb-4" />
-                <h3 className="text-xl font-bold text-gray-900 mb-2">No products found</h3>
-                <p className="text-gray-500">We couldn't find any products matching your search criteria.</p>
-                <button
-                  onClick={() => { setSearchQuery(''); setActiveCategory('All'); }}
-                  className="mt-6 text-[#7F5AF0] font-semibold hover:underline"
-                >
-                  Clear all filters
-                </button>
-              </div>
-            )}
-          </div>
-
         </div>
       </section>
-      <CTA 
-        title="Source Premium Agricultural Commodities Today" 
-        description="Browse our extensive catalog of high-quality rice and wheat, sourced directly from verified global suppliers."
-      />
+
+      {/* BULK ORDER CTA */}
+      <section className="py-16" style={{ background: "linear-gradient(180deg, var(--bg) 0%, var(--bg-alt) 100%)" }}>
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="glass-purple rounded-3xl p-10 md:p-14 border border-(--accent-light)/30">
+            <h2 className="text-3xl md:text-4xl font-bold text-text mb-3">Looking for Bulk Orders?</h2>
+            <p className="text-text-muted mb-8 max-w-lg mx-auto">We offer competitive pricing for bulk exports with custom packaging and international shipping support.</p>
+            <Link href="/contact" className="btn-primary inline-flex items-center gap-2">
+              <span className="relative z-10 flex items-center gap-2">Request a Quote <ArrowRight className="h-5 w-5" /></span>
+            </Link>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

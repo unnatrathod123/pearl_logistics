@@ -1,22 +1,19 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Outfit } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import Navbar from "@/app/components/Navbar";
+import Footer from "@/app/components/Footer";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const outfit = Outfit({
+  variable: "--font-outfit",
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800"],
 });
 
 export const metadata: Metadata = {
-  title: "Pearl Logistics | Global Logistics",
-  description: "Professional logistics and supply chain solutions.",
+  title: "Pearl Logistics — Premium Rice & Wheat Export",
+  description:
+    "Pearl Logistics specializes in premium Basmati Rice, Normal Rice, and high-grade Wheat. From farm to your doorstep with uncompromising quality and global reach.",
 };
 
 export default function RootLayout({
@@ -25,13 +22,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col bg-slate-50">
+    <html lang="en">
+      <body className={`${outfit.variable} antialiased`}>
         <Navbar />
-        <main className="flex-1 pt-20">
+        <main className="min-h-screen">
           {children}
         </main>
         <Footer />
