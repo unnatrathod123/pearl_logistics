@@ -36,7 +36,7 @@ export default function Navbar() {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled
           ? "glass shadow-lg py-3"
-          : "bg-gradient-to-r from-[var(--bg)] via-[var(--bg-alt)] to-[var(--surface)] py-5"
+          : "bg-linear-to-r from-bg via-bg-alt to-surface py-5"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -63,13 +63,13 @@ export default function Navbar() {
                 href={link.href}
                 className={`relative px-4 py-2 font-medium transition-colors text-md group ${
                   pathname === link.href
-                    ? "text-[var(--accent-dark)]"
-                    : "text-[var(--text)] hover:text-[var(--accent-dark)]"
+                    ? "text-accent-dark"
+                    : "text-text hover:text-accent-dark"
                 }`}
               >
                 {link.name}
                 <span
-                  className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 bg-gradient-to-r from-[var(--accent)] to-[var(--glow)] rounded-full transition-all duration-300 ${
+                  className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 bg-linear-to-r from-accent to-glow rounded-full transition-all duration-300 ${
                     pathname === link.href ? "w-3/4" : "w-0 group-hover:w-3/4"
                   }`}
                 />
@@ -77,7 +77,7 @@ export default function Navbar() {
             ))}
             <Link
               href="/contact"
-              className="ml-3 btn-primary text-md !py-2.5 !px-6 inline-flex items-center gap-2"
+              className="ml-3 btn-primary text-md py-2.5! px-6! inline-flex items-center gap-2"
             >
               <span className="relative z-10">Contact Us</span>
             </Link>
@@ -87,7 +87,7 @@ export default function Navbar() {
           <div className="md:hidden">
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="relative w-10 h-10 rounded-xl bg-[var(--surface)] flex items-center justify-center text-[var(--text)] hover:bg-[var(--surface-hover)] transition-colors"
+              className="relative w-10 h-10 rounded-xl bg-surface flex items-center justify-center text-text hover:bg-surface-hover transition-colors"
               aria-label="Toggle menu"
             >
               {isMobileMenuOpen ? (
@@ -102,8 +102,8 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       <div
-        className={`md:hidden absolute top-full left-0 right-0 glass shadow-xl border-t border-[var(--border)] transition-all duration-300 overflow-hidden ${
-          isMobileMenuOpen ? "max-h-[400px] opacity-100" : "max-h-0 opacity-0"
+        className={`md:hidden absolute top-full left-0 right-0 glass shadow-xl border-t border-border transition-all duration-300 overflow-hidden ${
+          isMobileMenuOpen ? "max-h-100 opacity-100" : "max-h-0 opacity-0"
         }`}
       >
         <div className="px-4 pt-3 pb-6 space-y-1">
@@ -113,8 +113,8 @@ export default function Navbar() {
               href={link.href}
               className={`block px-4 py-3 rounded-xl font-medium transition-colors ${
                 pathname === link.href
-                  ? "bg-[var(--surface)] text-[var(--accent-dark)]"
-                  : "text-[var(--text)] hover:bg-[var(--surface)] hover:text-[var(--accent-dark)]"
+                  ? "bg-surface text-accent-dark"
+                  : "text-text hover:bg-surface hover:text-accent-dark"
               }`}
             >
               {link.name}
@@ -123,7 +123,7 @@ export default function Navbar() {
           <div className="pt-3">
             <Link
               href="/contact"
-              className="block w-full text-center btn-primary !rounded-xl"
+              className="block w-full text-center btn-primary rounded-xl!"
             >
               <span className="relative z-10">Contact Us</span>
             </Link>
