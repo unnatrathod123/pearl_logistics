@@ -3,6 +3,7 @@ import { TrendingUp, ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import ProductCard from "@/app/components/ProductCard";
+import { Suspense } from 'react'
 import ProductsGrid from "@/app/components/ProductsGrid";
 
 export const metadata: Metadata = {
@@ -71,7 +72,13 @@ export default function ProductsPage() {
       </section>
 
       {/* PRODUCT GRID — client component handles highlight logic */}
-      <ProductsGrid />
+      {/* 
+          Wrapping in Suspense prevents the build error 
+          by allowing this part to be rendered on the client.
+      */}
+      <Suspense fallback={<div>Loading products...</div>}>
+        <ProductsGrid />
+      </Suspense>
 
       {/* BULK ORDER CTA */}
       <section
