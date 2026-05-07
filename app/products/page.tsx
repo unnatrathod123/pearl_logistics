@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { TrendingUp, ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import ProductCard from "@/app/components/ProductCard";
+//import ProductCard from "@/app/components/ProductCard";
 import { Suspense } from 'react'
 import ProductsGrid from "@/app/components/ProductsGrid";
 
@@ -76,7 +76,7 @@ export default function ProductsPage() {
           Wrapping in Suspense prevents the build error 
           by allowing this part to be rendered on the client.
       */}
-      <Suspense fallback={<div>Loading products...</div>}>
+      <Suspense fallback={<p>Loading products...</p>}>
         <ProductsGrid />
       </Suspense>
 

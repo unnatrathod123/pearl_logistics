@@ -52,7 +52,8 @@ export default function ProductsGrid() {
   const [activeHash, setActiveHash] = useState("");
   const pathname = usePathname();
   const searchParams = useSearchParams();
-
+  const search = searchParams.get('search')
+  
   useEffect(() => {
     const handleHash = () => {
       const hash = window.location.hash.replace("#", "");
