@@ -91,7 +91,7 @@ export default function ProductsGrid() {
                 id={product.id}
                 className={`space-y-6 rounded-3xl transition-all duration-500 ${
                   isHighlighted
-                    ? "ring-2 ring-accent shadow-[0_0_40px_0px_var(--accent)] scale-[1.02] p-3"
+                    ? "ring-2 ring-accent shadow-[0_0_40px_0px_var(--accent)] scale-[1.01] sm:scale-[1.02] p-2 sm:p-3"
                     : "p-0"
                 }`}
               >

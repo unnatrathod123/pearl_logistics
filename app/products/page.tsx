@@ -47,9 +47,9 @@ export default function ProductsPage() {
       </section>
 
       {/* PRODUCTS BANNER */}
-      <section className="py-8" style={{ background: "var(--bg)" }}>
+      <section className="py-6 sm:py-8" style={{ background: "var(--bg)" }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="relative w-full h-50 md:h-80 rounded-3xl overflow-hidden shadow-lg border border-border">
+          <div className="relative w-full h-48 xs:h-60 sm:h-72 md:h-96 rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg border border-border">
             <Image
               src="/images/products_banner.png"
               alt="Premium grain commodities — Rice, Wheat"
@@ -57,7 +57,7 @@ export default function ProductsPage() {
               className="object-cover"
               sizes="100vw"
             />
-            <div className="absolute inset-0 bg-linear-to-r from-accent-dark/50 via-transparent to-(--accent)/30 pointer-events-none" />
+            <div className="absolute inset-0 bg-linear-to-r from-accent-dark/60 via-accent-dark/20 to-transparent pointer-events-none" />
             <div className="absolute bottom-6 left-6 md:bottom-10 md:left-10 z-10">
               <h2 className="text-white text-2xl md:text-4xl font-bold drop-shadow-lg mb-1">
                 Premium Agri Commodities

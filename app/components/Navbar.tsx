@@ -179,11 +179,11 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       <div
-        className={`md:hidden absolute top-full left-0 right-0 glass shadow-xl border-t border-border transition-all duration-300 overflow-hidden ${
-          isMobileMenuOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0"
+        className={`md:hidden absolute top-full left-0 right-0 glass shadow-2xl border-t border-border transition-all duration-500 ease-in-out overflow-hidden ${
+          isMobileMenuOpen ? "max-h-[90vh] opacity-100 translate-y-0" : "max-h-0 opacity-0 -translate-y-4 pointer-events-none"
         }`}
       >
-        <div className="px-4 pt-3 pb-6 space-y-1">
+        <div className="px-6 pt-4 pb-8 space-y-2 max-h-[80vh] overflow-y-auto">
           {navLinks.filter((l) => l.href !== "/contact").map((link) => (
             <Link
               key={link.name}

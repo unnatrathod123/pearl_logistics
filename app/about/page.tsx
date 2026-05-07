@@ -100,20 +100,20 @@ export default function AboutPage() {
             <h2 className="text-3xl md:text-4xl font-bold text-text mb-4">Our <span className="text-gradient">Process</span></h2>
             <p className="text-text-muted">From farm to global markets — quality at every step.</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
             {[
               { step: "01", title: "Sourcing", desc: "Partner with top-tier farmers and procure the finest grains from India's agricultural heartlands." },
               { step: "02", title: "Processing", desc: "Multi-stage cleaning, sorting, and grading in ISO-certified facilities." },
               { step: "03", title: "Packaging", desc: "Custom packaging with private labeling, sealed to preserve freshness." },
               { step: "04", title: "Delivery", desc: "Temperature-controlled logistics with global shipping for timely delivery." },
             ].map((item, i) => (
-              <div key={i} className="relative">
-                <div className="feature-card text-center h-full">
-                  <div className="text-5xl font-extrabold text-gradient opacity-30 mb-4">{item.step}</div>
-                  <h3 className="text-lg font-bold text-text mb-2">{item.title}</h3>
-                  <p className="text-text-muted text-sm leading-relaxed">{item.desc}</p>
+              <div key={i} className="relative group">
+                <div className="feature-card text-center h-full p-8 md:p-10">
+                  <div className="text-5xl md:text-6xl font-extrabold text-gradient opacity-20 mb-6 group-hover:opacity-40 transition-opacity">{item.step}</div>
+                  <h3 className="text-xl font-bold text-text mb-3">{item.title}</h3>
+                  <p className="text-text-muted text-sm md:text-base leading-relaxed">{item.desc}</p>
                 </div>
-                {i < 3 && <div className="hidden md:block absolute top-1/2 -right-3 w-6 h-0.5 bg-border z-10" />}
+                {i < 3 && <div className="hidden lg:block absolute top-1/2 -right-4 w-8 h-0.5 bg-border z-10" />}
               </div>
             ))}
           </div>
